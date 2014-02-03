@@ -59,5 +59,16 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+    <script>
+      var pubnub = PUBNUB.init({
+        subscribe_key: 'sub-c-50d56e1e-2fd9-11e3-a041-02ee2ddab7fe'
+      });
+
+      pubnub.subscribe({
+        channel: 'd5f06780-30a8-4a48-a2f8-7ed181b4a13f',
+        message: function(d){console.log(d)}
+      });
+    </script>
 </body>
 </html>

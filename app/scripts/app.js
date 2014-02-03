@@ -11,7 +11,7 @@ angular.module('vskypeApp', [
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
-      })  
+      })
       .otherwise({
         redirectTo: '/'
       });

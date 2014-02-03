@@ -4,7 +4,7 @@
 <div class="row" ng-controller="ConvertionCtrl">
   <div class="col-md-5">
     <div class="input-group input-group-lg">
-      <input type="text" class="form-control" id="tagValue" ng-model="tag" ng-change="convert.convertTagcoin()">
+      <input type="text" class="form-control" id="tagValue" ng-model="tag" ng-change="convert.convertTagcoin(tag)">
       <span class="input-group-addon">TAG</span>
     </div>
   </div>
@@ -13,7 +13,7 @@
   </div>
   <div class="col-md-5">
     <div class="input-group input-group-lg">
-      <input type="text" name="" id="convertedValue" class="form-control" ng-model="currency" ng-change="convert.convertCurrency()">
+      <input type="text" name="" id="currValue" class="form-control" ng-model="currency" ng-change="convert.convertCurrency(currency)">
       <span class="input-group-addon">PHP</span>
     </div>
   </div>
