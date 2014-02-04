@@ -18,9 +18,8 @@ vskype.factory('convert', function($http){
 			method: 'GET',
 			url: 'http://www.cryptocoincharts.info/v2/api/tradingPair/TAG_BTC'
 		})
-			.then(function(res){
-				var data = res.data;
-				return data['price'];
+			.success(function(res){
+				var TAG_BTC = res['price'];
 			});
 	};
 
@@ -29,8 +28,8 @@ vskype.factory('convert', function($http){
 			method: 'GET',
 			url: 'http://data.mtgox.com/api/2/BTCUSD/money/ticker_fast'
 		})
-			.success(function(result){
-				convertionService.usdVal = result['data']['last_all']['value'] * btc;
+			.success(function(res){
+				var BTC_USD = res['data']['last_all']['value'] * btc;
 			});
 	};
 
