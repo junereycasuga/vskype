@@ -1,0 +1,25 @@
+<div class="header"><img src="images/cf0a9ef5.logo.png" alt="vskype" width="200"></div><div class="row" ng-controller="ConvertionCtrl"><div class="col-md-5"><div class="input-group input-group-lg"><input type="text" class="form-control" id="tagValue" ng-model="tag" ng-change="convert.convertTagcoin(tag)"><span class="input-group-addon">TAG</span></div></div><div class="col-md-1"><h4>=</h4></div><div class="col-md-5"><div class="input-group input-group-lg"><input type="text" name="" id="currValue" class="form-control" ng-model="currency" ng-change="convert.convertCurrency(currency)"><span class="input-group-addon">USD</span></div></div></div><br><div class="footer"></div><style>.animate-enter, 
+  .animate-leave
+  { 
+      -webkit-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+      -moz-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+      -ms-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+      -o-transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+      transition: 400ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all;
+      position: relative;
+      display: block;
+  } 
+   
+  .animate-enter.animate-enter-active, 
+  .animate-leave {
+      opacity: 1;
+      bottom: 0;
+      height: 30px;
+  }
+   
+  .animate-leave.animate-leave-active,
+  .animate-enter {
+      opacity: 0;
+      bottom: -50px;
+      height: 0px;
+  }</style>
