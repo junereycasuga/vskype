@@ -47,5 +47,15 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/junereycasuga/vskype.git"
+  },
+  "author": "Junerey Casuga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junereycasuga/vskype/issues"
+  },
+  "homepage": "http://junereycasuga.github.io/vskype"
 }
