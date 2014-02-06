@@ -18,7 +18,11 @@ vskype.factory('getData', function($http){
 	};
 
 	getDataService.getUSDValOfBTC = function(callback){
-		$http.get('https://www.bitstamp.net/api/ticker/').success(callback);
+		$http.get(
+			'https://www.bitstamp.net/api/ticker/')
+			.success(callback);
+		
+		// $http.get('https://www.localbitcoins.com/bitcoinaverage/ticker-all-currencies').success(callback);
 	};
 
 	return getDataService;
