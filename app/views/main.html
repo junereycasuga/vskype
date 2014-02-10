@@ -14,8 +14,34 @@
   <div class="col-md-5">
     <div class="input-group input-group-lg">
         <input type="text" name="" id="currValue" class="form-control" ng-model="currency">
-      <span class="input-group-addon">USD</span>
+        <span class="input-group-addon">USD</span>
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" data-toggle="modal" data-target=".bs-modal-sm"><span class="caret"></span></button>
+        </span>
     </div>
+  </div>
+
+  <div class="modal fade bs-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Choose a currency</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <input type="text" class="form-control" ng-model="search">
+                  </div>
+                  <div class="row">
+                    <table class="table table-hover">
+                        <tr ng-repeat="currency in convert.currencies.data | filter:search">
+                          <td>{{ currency.currency_name }} - {{ currency.currency_code }}</td>
+                      </tr>
+                    </table>
+                 </div>
+              </div>
+          </div>
+      </div>
   </div>
 </div>
 <br>

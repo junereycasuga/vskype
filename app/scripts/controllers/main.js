@@ -5,10 +5,15 @@ var vskype = angular.module('vskypeApp');
 vskype.factory('convert', function($firebase, firebaseUrl) {
     var conv = {};
     
+    conv.fb = $firebase(new Firebase(firebaseUrl));
     conv.tag_btc = $firebase(new Firebase(firebaseUrl + 'tag_btc'));
     conv.btc_usd = $firebase(new Firebase(firebaseUrl + 'btc_usd'));
     conv.usd_currency = $firebase(new Firebase(firebaseUrl + 'usd_currency'));
     conv.currencies = $firebase(new Firebase(firebaseUrl + 'currencies'));
+    console.log(conv.currencies);
+    conv.changeCurrency = function(arg) {
+
+    };
 
     conv.convertTagcoin = function(arg) {
         var convertedTagtoBTC = arg * conv.tag_btc.price;
