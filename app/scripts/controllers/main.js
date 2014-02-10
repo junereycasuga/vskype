@@ -2,67 +2,35 @@
 
 var vskype = angular.module('vskypeApp');
 
-vskype.controller('MainCtrl', function ($scope) {
+vskype.factory('convert', function($firebase, firebaseUrl) {
+    var conv = {};
+    
+    conv.tag_btc = $firebase(new Firebase(firebaseUrl + 'tag_btc'));
+    conv.btc_usd = $firebase(new Firebase(firebaseUrl + 'btc_usd'));
+    conv.usd_currency = $firebase(new Firebase(firebaseUrl + 'usd_currency'));
+    conv.currencies = $firebase(new Firebase(firebaseUrl + 'currencies'));
+
+    conv.convertTagcoin = function(arg) {
+        var convertedTagtoBTC = arg * conv.tag_btc.price;
+        var convertedBTCtoUSD = convertedTagtoBTC * conv.btc_usd.price;
+        conv.convertedTag = convertedBTCtoUSD;
+        
+        if(isNaN(conv.convertedTag)){
+            $('#currValue').val('');
+        } else {
+            $('#currValue').val(Number(conv.convertedTag).toFixed(2));
+        }
+    };
+
+    return conv;
+});
+
+vskype.controller('MainCtrl', function ($scope, convert) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma',
     ];
-});
 
-vskype.factory('getData', function($http){
-	var getDataService = {};
-
-	getDataService.getBTCValOfTag = function(callback){
-		$http.get('http://www.cryptocoincharts.info/v2/api/tradingPair/TAG_BTC').success(callback);
-	};
-
-	getDataService.getUSDValOfBTC = function(callback){
-		$http.get(
-			'https://www.bitstamp.net/api/ticker/')
-			.success(callback);
-		
-		// $http.get('https://www.localbitcoins.com/bitcoinaverage/ticker-all-currencies').success(callback);
-	};
-
-	return getDataService;
-});
-
-vskype.factory('convert', function($http, getData){
-	var convertionService = {};
-
-	convertionService.getBTCValOfTagCallback = function(res){
-		var TAG_BTC = res['price'];
-		getData.getUSDValOfBTC(function(res2){
-			var BTC_USD = res2['last'];
-			convertionService.convertTagcoin = function(tag){
-				var TAG_BTC2 = TAG_BTC * tag;
-				var BTC_USD2 = BTC_USD * TAG_BTC2;
-				if(isNaN(BTC_USD)){
-					$('#currValue').val('');
-				} else {
-					$('#currValue').val(Number(BTC_USD2).toFixed(2));
-				}
-			}
-		});
-	};
-
-	setInterval(function(){
-		getData.getBTCValOfTag(convertionService.getBTCValOfTagCallback);
-	}, 10000);
-
-	convertionService.convertCurrency = function(curr){
-		var currValue = curr * convertionService.usdVal;
-		if(isNaN(currValue)){
-			$('#tagValue').val('');
-		} else {
-			$('#tagValue').val(Number(currValue).toFixed(8));
-		}
-	};
-
-	return convertionService;
-});
-
-vskype.controller('ConvertionCtrl', function($scope, $http, convert) {
-	$scope.convert = convert;
+    $scope.convert = convert;
 });

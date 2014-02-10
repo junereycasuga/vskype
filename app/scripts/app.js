@@ -5,6 +5,7 @@ angular.module('vskypeApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
+  'firebase',
 ])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
@@ -15,4 +16,5 @@ angular.module('vskypeApp', [
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .value('firebaseUrl', 'https://vskype.firebaseio.com/')
