@@ -89,3 +89,14 @@ body {
         border-bottom: 0;
     }
 }
+
+.contain {
+    width: 90%;
+    margin: 0 auto;
+}
+
+#currencyList {
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
