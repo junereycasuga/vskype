@@ -1,13 +1,8 @@
-<div class="header">
-    <div class="contain">
-        <img src="images/logo.png" alt="vskype" width="200">
-    </div>
-</div>
 <div class="container" id="converter">
     <div class="row" ng-controller="MainCtrl">
         <div class="col-md-5">
             <div class="input-group input-group-lg">
-                <input type="text" class="form-control" id="tagValue" ng-model="tag" ng-change="convert.convertTagcoin(tag)">
+                <input type="text" class="form-control" id="tagValue" ng-model="convert.tag" ng-change="convert.convertTagcoin(convert.tag, convert.currency_code)" ng-init="convert.onLoadConvertion(convert.tag)">
                 <span class="input-group-addon">TAG</span>
             </div>
         </div>
@@ -16,7 +11,7 @@
         </div>
         <div class="col-md-5">
             <div class="input-group input-group-lg">
-                <input type="text" name="" id="currValue" class="form-control" ng-model="convert.currency">
+                <input type="text" name="" id="currValue" class="form-control" ng-model="convert.currency" readonly>
                 <span class="input-group-addon">{{ convert.currency_code}}</span>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" data-toggle="modal" data-target=".bs-modal-sm"><span class="caret"></span></button>
@@ -38,7 +33,7 @@
                         <div class="row" id="currencyList">
                             <table class="table table-hover">
                                 <tr ng-repeat="currency in convert.currencies.data | filter:search">
-                                    <td><a href="/#/TAG/{{ currency.currency_code }}" class="curr">{{ currency.currency_name }} - {{ currency.currency_code}}</a></td>
+                                    <td><a href="/#/TAG/{{ currency.currency_code }}" data-dismiss="modal" ng-click="convert.convertTagcoin(convert.tag, currency.currency_code)">{{ currency.currency_name }} - {{ currency.currency_code}}</a></td>
                                 </tr>
                             </table>
                         </div>
@@ -49,12 +44,3 @@
     </div>
     <br>
 </div>
-<div class="footer">
-    <div class="contain"></div>
-</div>
-
-<script>
-    $('.curr').on('click', function(){
-        $('.modal').hide();
-    });
-</script>

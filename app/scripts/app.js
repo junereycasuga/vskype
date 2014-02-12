@@ -21,4 +21,4 @@ angular.module('vskypeApp', [
         redirectTo: '/'
       });
   })
-  .value('firebaseUrl', 'https://vskype.firebaseio.com/')
+  .value('firebaseUrl', 'https://vskype.firebaseio.com/');

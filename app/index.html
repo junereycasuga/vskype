@@ -17,6 +17,7 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animate.css">
     <!-- endbuild -->
   </head>
   <body ng-app="vskypeApp">
@@ -25,7 +26,17 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-view=""></div>
+    <div id="loading">
+        <div id="loading-text">
+            <h1>Loading...</h1>
+        </div>
+    </div>
+    <div class="header">
+        <div class="contain">
+            <img src="images/logo.png" alt="vskype" width="200">
+        </div>
+    </div>
+    <div id="angularview" ng-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
