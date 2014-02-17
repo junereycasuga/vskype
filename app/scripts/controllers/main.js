@@ -44,8 +44,6 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
             conv.currency_code = currency;
             if(amount){
                 conv.tag=amount;
-            } else {
-                conv.tag=1;
             }
             var convertedTagtoBTC = amount * conv.tag_btc.price;
             var convertedBTCtoUSD = convertedTagtoBTC * conv.btc_usd.price;
