@@ -16,6 +16,12 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
     } else {
         conv.currency_code = "USD";
     }
+
+    if($routeParams.crypto_code){
+        conv.crypto_code = $routeParams.crypto_code;
+    } else {
+        conv.crypto_code = "TAG";
+    }
     
     conv.onLoadConvertion = function(amount){
         if(!amount){
@@ -29,10 +35,18 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
         } else {
             var currency = "USD";
         }
-        conv.convertTagcoin(amount, currency);
+
+        if($routeParams.crypto_code){
+            var crypto = $routeParams.crypto_code;
+        } else {
+            var crypto = "TAG";
+        }
+
+        conv.convertTagcoin(amount, crypto, currency);
     };
     
-    conv.convertTagcoin = function(amount, currency) {
+    conv.convertTagcoin = function(amount, crypto, currency) {
+        console.log(crypto);
         conv.currate = $firebase(new Firebase(firebaseUrl + 'usd_currency/' + currency));
         conv.currate.$on('loaded', function(){
             $('#loading').addClass('animated fadeOut');
@@ -42,13 +56,20 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
                 }
             );
             conv.currency_code = currency;
+            conv.crypto_code = crypto;
             if(amount){
                 conv.tag=amount;
             }
-            var convertedTagtoBTC = amount * conv.tag_btc.price;
-            var convertedBTCtoUSD = convertedTagtoBTC * conv.btc_usd.price;
-            var convertedUSDtoCur = convertedBTCtoUSD * conv.currate.rate;
-            conv.convertedTag = convertedUSDtoCur;
+
+            if(crypto == "TAG"){
+                var convertedTagtoBTC = amount * conv.tag_btc.price;
+                var convertedBTCtoUSD = convertedTagtoBTC * conv.btc_usd.price;
+                var convertedUSDtoCur = convertedBTCtoUSD * conv.currate.rate;
+                conv.convertedTag = convertedUSDtoCur;
+            } else if(crypto == "BTC"){
+                var convertedUSDtoCur = (amount * conv.btc_usd.price) * conv.currate.rate;
+                conv.convertedTag = convertedUSDtoCur;
+            }
 
             if(isNaN(conv.convertedTag)){
                 conv.currency = '';
@@ -58,7 +79,7 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
         });
 
         $timeout(function(){
-            conv.convertTagcoin(conv.tag, conv.currency_code);
+            conv.convertTagcoin(conv.tag, conv.crypto_code, conv.currency_code);
         }, 10000);
     };
 

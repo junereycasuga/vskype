@@ -13,7 +13,7 @@ angular.module('vskypeApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/TAG/:currency_code', {
+      .when('/:crypto_code/:currency_code', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
