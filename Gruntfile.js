@@ -97,6 +97,7 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
+      background-size: 200px;
       all: [
         'Gruntfile.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js'
