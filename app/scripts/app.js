@@ -7,7 +7,7 @@ angular.module('vskypeApp', [
   'ngRoute',
   'firebase',
 ])
-  .config(function ($routeProvider, $httpProvider) {
+  .config(function ($routeProvider, $httpProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -20,5 +20,7 @@ angular.module('vskypeApp', [
       .otherwise({
         redirectTo: '/'
       });
+    
+    $locationProvider.html5Mode(true);
   })
   .value('firebaseUrl', 'https://vskype.firebaseio.com/');
