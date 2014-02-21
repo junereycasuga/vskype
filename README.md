@@ -1,27 +1,19 @@
 Vskype
 =========
 
-Vskype is a simple app for converting Tagcoin to other currency and vice versa
+Vskype is a simple app for converting Tagcoin and Bitcoin to any fiat currency using [AngularJS](http://angularjs.org/) and [Firebase](https://www.firebase.com/).
 
-Version
-----
+Contributing
+--------------
 
-0.0.1
+Contributors are welcome, please fork and send pull requests! If you have any ideas on how to make this project better then please submit an issue.
 
-Tech
+ToDo
 -----------
 
-Vskype uses a number of open source projects to work properly:
-
-* [Yeoman](http://yeoman.io)
-* [Angular.js](http://angularjs.org/)
-* [Bower](http://bower.io)
-* [Grunt](http://gruntjs.com)
-* [jQuery](http://jquery.com)
-* [Twitter Bootstrap](http://getbootstrap.com)
-* [Tomodo.Korz](https://github.com/TOMODOcom/TOMODOkorz)
+* Converting from a currency to any Tagcoin or Bitcoin
 
 License
 ----
 
-MIT
+This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
