@@ -76,16 +76,57 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
                 conv.currency = Number(conv.convertedTag).toFixed(2);
             }
         });
-
-        $timeout(function(){
-            conv.convertTagcoin(conv.tag, conv.crypto_code, conv.currency_code);
-        }, 10000);
+        
+        $('#tagValue').focus(function(){
+            $timeout(function(){
+                conv.convertTagcoin(conv.tag, conv.crypto_code, conv.currency_code);
+            }, 10000);
+        });
     };
+
+    conv.convertCrypto = function(amount, crypto, currency) {       
+        conv.currate = $firebase(new Firebase(firebaseUrl + 'usd_currency/' + currency));
+        conv.currate.$on('loaded', function(){
+            conv.currency_code = currency;
+            conv.crypto_code = crypto;
+            if(amount){
+                conv.currency=amount;
+            }
+
+            var convertedCur = amount / conv.currate.rate;
+            if(crypto == "TAG"){
+                conv.convertedCurr = (convertedCur / conv.btc_usd.price) / conv.tag_btc.price;
+            } else if(crypto == "BTC"){
+                conv.convertedCurr = convertedCur / conv.btc_usd.price;
+            }
+
+            if(isNaN(conv.convertedTag)){
+                conv.tag = "";
+            } else {
+                conv.tag = Number(conv.convertedCurr).toFixed(8);
+            }
+        });
+
+        $('#currValue').focus(function(){
+            $timeout(function(){
+                conv.convertCrypto(conv.currency, conv.crypto_code, conv.currency_code);
+            }, 10000);
+        });
+    }
 
     return conv;
 });
 
 vskype.controller('MainCtrl', function ($scope, convert, $timeout) {
-    
+    $('#currValue').focus(function(){
+        $('#tagValue').removeAttr('ng-change');
+        $('#currValue').attr('ng-change','convert.convertCrypto(convert.currency, convert.crypto_code, convert.currency_code)');
+    });
+
+    $('#tagValue').focus(function(){
+        $('#currValue').removeAttr('ng-change');
+        $('#tagValue').attr('ng-change','convert.convertTagcoin(convert.tag, convert.crypto_code, convert.currency_code)');
+    });
+
     $scope.convert = convert;
 });

@@ -14,10 +14,10 @@
             </div>
         </div>
 
-        <div class="row" ng-controller="MainCtrl">
+        <div class="row" ng-controller="MainCtrl" ng-init="convert.onLoadConvertion(convert.tag)">
             <div class="col-md-5">
                 <div class="input-group input-group-lg">
-                    <input type="text" class="form-control converter-form lg-font" id="tagValue" ng-model="convert.tag" ng-change="convert.convertTagcoin(convert.tag, convert.crypto_code, convert.currency_code)" ng-init="convert.onLoadConvertion(convert.tag)">
+                    <input type="text" class="form-control converter-form lg-font" id="tagValue" ng-model="convert.tag" ng-change="convert.convertTagcoin(convert.tag, convert.crypto_code, convert.currency_code)" ng-focus="convert.convertTagcoin(convert.tag, convert.crypto_code, convert.currency_code)">
                     <span class="input-group-addon lg-font">{{ convert.crypto_code }}</span>
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#crypto-modal"><span class="caret"></span></button>
@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-5">
                 <div class="input-group input-group-lg">
-                    <input type="text" name="" id="currValue" class="form-control converter-form lg-font" ng-model="convert.currency" readonly>
+                    <input type="text" name="" id="currValue" class="form-control converter-form lg-font" ng-model="convert.currency" ng-change="convert.convertCrypto(convert.currency, convert.crypto_code, convert.currency_code)" ng-focus="convert.convertCrypto(convert.currency, convert.crypto_code, convert.currency_code)">
                     <span class="input-group-addon lg-font">{{ convert.currency_code}}</span>
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="button" data-toggle="modal" data-target="#currency-modal"><span class="caret"></span></button>
