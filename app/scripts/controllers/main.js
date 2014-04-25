@@ -20,7 +20,7 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
     if($routeParams.crypto_code){
         conv.crypto_code = $routeParams.crypto_code;
     } else {
-        conv.crypto_code = "TAG";
+        conv.crypto_code = "BTC";
     }
     
     conv.onLoadConvertion = function(amount){
@@ -39,7 +39,7 @@ vskype.factory('convert', function($firebase, firebaseUrl, $routeParams, $timeou
         if($routeParams.crypto_code){
             var crypto = $routeParams.crypto_code;
         } else {
-            var crypto = "TAG";
+            var crypto = "BTC";
         }
 
         conv.convertTagcoin(amount, crypto, currency);
